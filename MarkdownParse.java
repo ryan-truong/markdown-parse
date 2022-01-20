@@ -20,6 +20,11 @@ public class MarkdownParse {
             toReturn.add(markdown.substring(nextCloseBracket + 2, closeParen));
             currentIndex = closeParen + 1;
         }
+        for(String s: toReturn){
+            if (s.contains(".png") || s.contains(".jpg") || s.contains(".jpeg")){
+                toReturn.remove(s);
+            }
+        }
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
