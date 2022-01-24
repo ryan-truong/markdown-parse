@@ -21,7 +21,7 @@ public class MarkdownParse {
             currentIndex = closeParen + 1;
         }
         for(String s: toReturn){
-            if (s.contains(".png") || s.contains(".jpg") || s.contains(".jpeg") || s.contains("data:")){
+            if (s.contains(".png") || s.contains(".jpg") || s.contains(".jpeg") || s.contains("data:") && s.contains("www.") == false){
                 toReturn.remove(s);
             }
         }
