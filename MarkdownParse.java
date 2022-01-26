@@ -17,7 +17,7 @@ public class MarkdownParse {
             int closeParen = markdown.indexOf(")", openParen);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
-
+        }
         for(String s: toReturn){
             if (s.contains(".png") || s.contains(".jpg") || s.contains(".jpeg") || s.contains("data:") && s.contains("www.") == false){
                 toReturn.remove(s);
@@ -25,8 +25,7 @@ public class MarkdownParse {
         }
         return toReturn;
     }
-}   
- public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 		Path fileName = Path.of(args[0]);
 	    String contents = Files.readString(fileName);
         ArrayList<String> links = getLinks(contents);
