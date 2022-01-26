@@ -18,11 +18,6 @@ public class MarkdownParse {
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
-        for(String s: toReturn){
-            if (s.contains(".png") || s.contains(".jpg") || s.contains(".jpeg") || s.contains("data:") && s.contains("www.") == false){
-                toReturn.remove(s);
-            }
-        }
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
