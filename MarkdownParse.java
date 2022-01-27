@@ -20,12 +20,26 @@ public class MarkdownParse {
             toReturn.add(markdown.substring(nextCloseBracket + 2, closeParen));
             currentIndex = closeParen + 1;
         }
+        ArrayList<String> filteredToReturn = new ArrayList<>();
         for(String s: toReturn){
-            if (s.contains(".png") || s.contains(".jpg") || s.contains(".jpeg") || s.contains("data:") && s.contains("www.") == false){
-                toReturn.remove(s);
+            if (s.contains(".png") == false && s.contains(".jpg") == false && s.contains(".jpeg") == false && 
+                s.contains("data:")== false  || s.contains("www.") == true){
+                    filteredToReturn.add(s);
             }
         }
-        return toReturn;
+        ArrayList<String> filteredToReturn2 = new ArrayList<>();
+        for(String s: filteredToReturn){
+            if (s.contains(" ") == false){
+                filteredToReturn2.add(s);
+            }
+        }
+        ArrayList<String> filteredToReturn3 = new ArrayList<>();
+        for(String s: filteredToReturn2)
+            if((s.indexOf(".") + 1 == s.length()) == false && s.contains(".") == true){
+                filteredToReturn3.add(s);
+            }
+
+        return filteredToReturn3;
     }
     public static void main(String[] args) throws IOException {
 		Path fileName = Path.of(args[0]);
