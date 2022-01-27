@@ -12,20 +12,19 @@ public class MarkdownParse {
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            int openParen = markdown.indexOf("(", nextCloseBracket);
-            int closeParen = markdown.indexOf(")", openParen);
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            int nextCloseBracket = markdown.indexOf("](", nextOpenBracket);
+            int closeParen = markdown.indexOf(")", nextCloseBracket + 1);
+            if(nextOpenBracket == - 1 || nextCloseBracket == -1 || closeParen == -1){
+                break;
+            }
+            toReturn.add(markdown.substring(nextCloseBracket + 2, closeParen));
             currentIndex = closeParen + 1;
         }
-<<<<<<< HEAD
-=======
         for(String s: toReturn){
-            if (s.contains(".png") || s.contains(".jpg") || s.contains(".jpeg") || s.contains("data:")){
+            if (s.contains(".png") || s.contains(".jpg") || s.contains(".jpeg") || s.contains("data:") && s.contains("www.") == false){
                 toReturn.remove(s);
             }
         }
->>>>>>> parent of c517831 (Update MarkdownParse.java)
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
